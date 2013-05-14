@@ -46,7 +46,6 @@ public class QuickActionPopup extends MyPopupWindow implements OnDismissListener
 
         public static final int ANIM_GROW_FROM_LEFT = 1;
 
-        private Context mContext;
     /**
      * Constructor for default vertical layout
      * 
@@ -54,7 +53,6 @@ public class QuickActionPopup extends MyPopupWindow implements OnDismissListener
      */
     public QuickActionPopup(Context context) {
         this(context, VERTICAL);
-        mContext = context;
     }
 
 
