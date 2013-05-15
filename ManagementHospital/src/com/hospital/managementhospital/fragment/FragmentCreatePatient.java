@@ -1,5 +1,7 @@
 package com.hospital.managementhospital.fragment;
 
+import com.hospital.managementhospital.R;
+
 public class FragmentCreatePatient extends AbstractFragment {
 
 	@Override
@@ -19,7 +21,7 @@ public class FragmentCreatePatient extends AbstractFragment {
 
 	@Override
 	protected int getLayoutId() {
-		return 0;
+		return R.layout.fragment_create_patient;
 	}
 
 }
