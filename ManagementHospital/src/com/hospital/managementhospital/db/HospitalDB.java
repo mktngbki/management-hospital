@@ -1,6 +1,9 @@
 package com.hospital.managementhospital.db;
 
 import java.io.File;
+import java.sql.Date;
+import java.text.ParseException;
+import java.util.ArrayList;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -352,9 +355,6 @@ public class HospitalDB extends SQLiteOpenHelper {
 
 	public void initStories() {
 		SQLiteDatabase database = getWritableDatabase();
-		// insertStoryRes(database);
-		// insertItem(database, context);
-		// insertDefaultProfile(database);
 		database.close();
 	}
 
@@ -367,5 +367,39 @@ public class HospitalDB extends SQLiteOpenHelper {
 		cursor.close();
 		database.close();
 		return currentTicketShop;
+	}
+
+	public ArrayList<Patient> getListPatient() {
+		ArrayList<Patient> list = new ArrayList<Patient>();
+		SQLiteDatabase database = getReadableDatabase();
+		String query = "Select pa_id,pa_name,pa_sex,pa_dob,pa_face_color FROM patients";
+		Cursor cursor = database.rawQuery(query, null);
+		int id;
+		String paName;
+		int paSex;
+		String fc;
+		String strDob;
+
+		while (cursor.moveToNext()) {
+			id = cursor.getInt(0);
+			paName = cursor.getString(1);
+			paSex = cursor.getInt(2);
+			strDob = cursor.getString(3);
+			fc = cursor.getString(4);
+			Patient patient = new Patient();
+			patient.setPaId(id);
+			patient.setPaName(paName);
+			try {
+				patient.setPaDateOfBith(strDob);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			patient.setPaColorFace(fc);
+			patient.setPaSex(paSex);
+
+			list.add(patient);
+		}
+		database.close();
+		return list;
 	}
 }

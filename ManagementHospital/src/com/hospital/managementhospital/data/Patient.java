@@ -1,9 +1,11 @@
 package com.hospital.managementhospital.data;
 
-import android.annotation.SuppressLint;
 import java.io.Serializable;
-import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import android.annotation.SuppressLint;
 
 @SuppressWarnings("serial")
 public class Patient implements Serializable {
@@ -14,6 +16,27 @@ public class Patient implements Serializable {
 	private String paColorFace;
 
 	public Patient() {
+	}
+
+	public void setPaId(int paId) {
+		this.paId = paId;
+	}
+
+	public void setPaColorFace(String paColorFace) {
+		this.paColorFace = paColorFace;
+	}
+
+	public void setPaDateOfBith(String input) throws ParseException {
+		 SimpleDateFormat dbFormat = new SimpleDateFormat("yyyy-MM-dd");
+		 paDateOfBith =  dbFormat.parse(input);
+	}
+
+	public void setPaName(String paName) {
+		this.paName = paName;
+	}
+
+	public void setPaSex(int paSex) {
+		this.paSex = paSex;
 	}
 
 	@SuppressLint("SimpleDateFormat")
